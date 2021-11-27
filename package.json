@@ -1,33 +1,34 @@
 {
-  "private": true,
   "name": "remix-app-template",
+  "private": true,
   "description": "",
   "license": "",
+  "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
-    "postinstall": "remix setup node",
-    "start": "remix-serve build",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.{js,json,ts,tsx,scss,css,md}\"",
     "check:format": "npm run prettier -- --list-different",
-    "format": "npm run prettier -- --write"
+    "dev": "remix dev",
+    "format": "npm run prettier -- --write",
+    "postinstall": "remix setup node",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.{js,json,ts,tsx,scss,css,md}\""
   },
   "dependencies": {
     "@remix-run/react": "^1.0.6",
+    "@remix-run/serve": "^1.0.6",
+    "@remix-run/vercel": "^1.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "^1.0.6",
-    "@remix-run/serve": "^1.0.6"
+    "remix": "^1.0.6"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.0.6",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "prettier": "^2.5.0",
+    "prettier-plugin-packagejson": "^2.2.15",
     "typescript": "^4.1.2"
   },
   "engines": {
     "node": ">=14"
-  },
-  "sideEffects": false
+  }
 }
