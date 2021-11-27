@@ -40,7 +40,7 @@ export default function Index() {
   console.log(coinsMarkets)
 
   return (
-    <div>
+    <div className="bg-primary">
       <h1>Hello World</h1>
     </div>
   )

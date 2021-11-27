@@ -8,3 +8,6 @@ public/build
 api/build
 
 .vercel
+
+
+app/assets/css/tailwind.css
