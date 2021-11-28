@@ -1,9 +1,11 @@
+import dayjs from 'dayjs'
 import * as React from 'react'
 import { Column, useTable } from 'react-table'
 import type { MetaFunction, LoaderFunction } from 'remix'
 import { useLoaderData, json } from 'remix'
 import { MainLayout } from '~/layouts/main/main-layout'
 import type { CoinMarket } from '~/module-types/coins-markets'
+import { dateFormats } from '~/utils/constants'
 
 type IndexData = {
   coinsMarkets: CoinMarket[]
@@ -93,7 +95,7 @@ export default function Index() {
       {
         Header: 'Last Updated',
         accessor: 'last_updated',
-        Cell: ({ cell: { value } }) => <span>{value}</span>,
+        Cell: ({ cell: { value } }) => <span>{dayjs(value).format(dateFormats.COIN)}</span>,
       },
     ],
     [],
