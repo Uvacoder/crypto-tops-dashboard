@@ -1,5 +1,6 @@
 export interface CoinMarket {
   id: string
+  index: number
   symbol: string
   name: string
   image: string

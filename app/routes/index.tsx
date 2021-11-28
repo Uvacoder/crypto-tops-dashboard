@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import * as React from 'react'
-import { Column, useTable } from 'react-table'
+import { Column, useSortBy, useTable } from 'react-table'
 import type { MetaFunction, LoaderFunction } from 'remix'
 import { useLoaderData, json } from 'remix'
 import { Price } from '~/components/price/price'
@@ -23,7 +23,7 @@ export let loader: LoaderFunction = async () => {
 
   const responseData = await response.json()
 
-  let coinsMarkets: IndexData['coinsMarkets'] = responseData
+  let coinsMarkets: IndexData['coinsMarkets'] = responseData.map((a, index) => ({ ...a, index: index + 1 }))
 
   // https://remix.run/api/remix#json
   return json({
@@ -48,12 +48,8 @@ export default function Index() {
   const tableColumns = React.useMemo(
     (): Column<CoinMarket>[] => [
       {
-        // Make an expander cell
-        Header: '#', // No header
-        accessor: 'id',
-        Cell: ({ row: { index } }) => {
-          return <span>{index + 1}</span>
-        },
+        Header: '#',
+        accessor: 'index',
       },
       {
         Header: 'Name',
@@ -111,7 +107,7 @@ export default function Index() {
     [],
   )
 
-  const tableInstance = useTable({ columns: tableColumns, data: memoizedData })
+  const tableInstance = useTable({ columns: tableColumns, data: memoizedData }, useSortBy)
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance
 
@@ -123,8 +119,11 @@ export default function Index() {
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps()} className="p-1.5 border-b">
+                  // @ts-ignore
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())} className="p-1.5 border-b">
                     {column.render('Header')}
+                    {/* @ts-ignore */}
+                    <span className="absolute">{column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : ''}</span>
                   </th>
                 ))}
               </tr>
