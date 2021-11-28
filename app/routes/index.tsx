@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Column, useTable } from 'react-table'
 import type { MetaFunction, LoaderFunction } from 'remix'
 import { useLoaderData, json } from 'remix'
+import { Price } from '~/components/price/price'
 import { MainLayout } from '~/layouts/main/main-layout'
 import type { CoinMarket } from '~/module-types/coins-markets'
 import { dateFormats } from '~/utils/constants'
@@ -47,6 +48,14 @@ export default function Index() {
   const tableColumns = React.useMemo(
     (): Column<CoinMarket>[] => [
       {
+        // Make an expander cell
+        Header: '#', // No header
+        accessor: 'id',
+        Cell: ({ row: { index } }) => {
+          return <span>{index + 1}</span>
+        },
+      },
+      {
         Header: 'Name',
         accessor: 'name',
         Cell: ({ cell: { value }, row: { original } }) => {
@@ -65,7 +74,7 @@ export default function Index() {
       {
         Header: 'Price',
         accessor: 'current_price',
-        Cell: ({ cell: { value } }) => <span>$ {value}</span>,
+        Cell: ({ cell: { value } }) => <Price value={value} />,
       },
       {
         Header: 'Change',
@@ -81,16 +90,17 @@ export default function Index() {
       {
         Header: 'Market Cap',
         accessor: 'market_cap',
-        Cell: ({ cell: { value } }) => <span>${value}</span>,
+        Cell: ({ cell: { value } }) => <Price value={value} />,
       },
       {
         Header: 'Volume',
         accessor: 'total_volume',
+        Cell: ({ cell: { value } }) => <Price value={value} />,
       },
       {
         Header: 'Circulating Supply',
         accessor: 'circulating_supply',
-        Cell: ({ cell: { value } }) => <span>${value}</span>,
+        Cell: ({ cell: { value } }) => <Price value={value} />,
       },
       {
         Header: 'Last Updated',
@@ -128,7 +138,7 @@ export default function Index() {
                 <tr {...row.getRowProps()}>
                   {row.cells.map(cell => {
                     return (
-                      <td {...cell.getCellProps()} className="p-1.5">
+                      <td {...cell.getCellProps()} className="p-1.5 text-h6">
                         {cell.render('Cell')}
                       </td>
                     )
