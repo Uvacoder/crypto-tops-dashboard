@@ -1,5 +1,5 @@
 .container {
-  @apply max-w-4xl mx-auto;
+  @apply max-w-5xl mx-auto;
 }
 
 a {
