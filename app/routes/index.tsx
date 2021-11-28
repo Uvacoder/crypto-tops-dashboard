@@ -18,7 +18,7 @@ type IndexData = {
 // https://remix.run/api/conventions#loader
 export let loader: LoaderFunction = async () => {
   const response = await fetch(
-    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false',
+    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=8&page=1&sparkline=false',
   )
 
   const responseData = await response.json()
@@ -134,7 +134,7 @@ export default function Index() {
               prepareRow(row)
 
               return (
-                <tr {...row.getRowProps()}>
+                <tr {...row.getRowProps()} className="hover:bg-gray-50">
                   {row.cells.map(cell => {
                     return (
                       <td {...cell.getCellProps()} className="p-1.5 text-h6">
