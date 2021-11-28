@@ -1,5 +1,6 @@
 import type { MetaFunction, LoaderFunction } from 'remix'
 import { useLoaderData, json } from 'remix'
+import { MainLayout } from '~/layouts/main/main-layout'
 import type { CoinMarket } from '~/module-types/coins-markets'
 
 type IndexData = {
@@ -37,11 +38,15 @@ export let meta: MetaFunction = () => {
 export default function Index() {
   let { coinsMarkets } = useLoaderData<IndexData>()
 
-  console.log(coinsMarkets)
+  coinsMarkets
 
   return (
-    <div className="bg-primary">
-      <h1>Hello World</h1>
-    </div>
+    <MainLayout>
+      <div className="container my-3">
+        <div className="bg-primary">
+          <h1>Hello World</h1>
+        </div>
+      </div>
+    </MainLayout>
   )
 }
