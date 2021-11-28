@@ -1,16 +1,19 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix'
 import type { LinksFunction } from 'remix'
 
-// import globalStylesUrl from '~/styles/global.css'
-// import darkStylesUrl from '~/styles/dark.css'
-import styles from '~/assets/css/tailwind.css'
+import tailwindStyles from '~/assets/css/tailwind.css'
+import globalStyles from '~/assets/css/global.css'
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
   return [
     {
       rel: 'stylesheet',
-      href: styles,
+      href: tailwindStyles,
+    },
+    {
+      rel: 'stylesheet',
+      href: globalStyles,
     },
   ]
 }

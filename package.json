@@ -6,10 +6,10 @@
   "sideEffects": false,
   "scripts": {
     "build": "npm run build:css && remix build",
-    "build:css": "tailwindcss -o ./app/assets/css/tailwind.css",
+    "build:css": "postcss styles --base styles --dir app/assets/css --env production",
     "check:format": "npm run prettier -- --list-different",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
-    "dev:css": "tailwindcss -o ./app/assets/css/tailwind.css --watch",
+    "dev:css": "postcss styles --base styles --dir app/assets/css -w",
     "format": "npm run prettier -- --write",
     "postinstall": "remix setup node",
     "prettier": "prettier --ignore-path .gitignore \"**/*.{js,json,ts,tsx,scss,css,md}\""
@@ -27,7 +27,10 @@
     "@remix-run/dev": "^1.0.6",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "autoprefixer": "^10.4.0",
     "concurrently": "^6.4.0",
+    "postcss": "^8.4.4",
+    "postcss-cli": "^9.0.2",
     "prettier": "^2.5.0",
     "prettier-plugin-packagejson": "^2.2.15",
     "tailwindcss": "^2.2.19",
