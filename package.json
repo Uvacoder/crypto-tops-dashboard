@@ -1,9 +1,10 @@
 {
-  "name": "remix-app-template",
+  "name": "crypto-market",
   "private": true,
   "description": "",
   "license": "",
   "sideEffects": false,
+  "author": "Yony Calsin",
   "scripts": {
     "build": "npm run build:css && remix build",
     "build:css": "postcss styles --base styles --dir app/assets/css --env production",
