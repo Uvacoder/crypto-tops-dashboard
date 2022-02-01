@@ -4,8 +4,8 @@ export function Footer() {
       <div className="container py-3 flex justify-between text-gray-800">
         <p>
           Created By{' '}
-          <a href="https://www.yonycalsin.com/?utm_source=crypto-market-project&utm_medium=footer&utm_campaign=referer&utm_id=crypto-market">
-            Yony Calsin
+          <a href="https://www.github.com/uvacoder">
+            uvacoder
           </a>
         </p>
 
